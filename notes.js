@@ -5,15 +5,23 @@ const chalk = require('chalk');
 // addNote
 const addNote = (title, body) => {
   let notes = loadNotes();
-  const note = {
-    title,
-    body
-  };
+  const duplicateNote = notes.find((note) => note.title === title);
 
-  notes.push(note);
+  if (!duplicateNote) {
+    const note = {
+      title,
+      body
+    };
 
-  console.log(chalk.magenta.inverse('Note added!'));
-  saveNotes(notes);
+    notes.push(note);
+
+    console.log(chalk.magenta.inverse('Note added!'));
+    saveNotes(notes);
+  } else {
+    console.log(
+      chalk.red.inverse('Duplicate title! Please amend and try again.')
+    );
+  }
 };
 
 // removeNote
