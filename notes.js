@@ -1,0 +1,1 @@
+/* The notes.js file will list all my functions for the command handlers */
