@@ -1,9 +1,6 @@
 /* The app.js file will contain all my yargs commands and take in the functions from notes.js to manipulate the data from the command line */
 const yargs = require('yargs');
-const chalk = require('chalk');
 const notes = require('./notes');
-
-// I want 4 commands - add, remove, read, list
 
 // Add note
 yargs.command({
@@ -39,6 +36,15 @@ yargs.command({
   },
   handler(argv) {
     notes.removeNote(argv.title);
+  }
+});
+
+// List notes
+yargs.command({
+  command: 'list',
+  describe: 'List all notes',
+  handler() {
+    notes.listNotes();
   }
 });
 

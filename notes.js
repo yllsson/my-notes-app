@@ -38,6 +38,16 @@ const removeNote = (title) => {
   }
 };
 
+// listNotes
+const listNotes = () => {
+  const notes = loadNotes();
+  console.log(chalk.magenta.inverse('These are my notes:'));
+  notes.forEach((note) => {
+    console.log(chalk.cyanBright.inverse(note.title));
+    console.log(note.body);
+  });
+};
+
 // loadNotes
 const loadNotes = () => {
   try {
@@ -57,5 +67,6 @@ const saveNotes = (notes) => {
 
 module.exports = {
   addNote,
-  removeNote
+  removeNote,
+  listNotes
 };
