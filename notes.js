@@ -48,6 +48,14 @@ const listNotes = () => {
   });
 };
 
+// readNote
+const readNote = (title) => {
+  const notes = loadNotes();
+  const noteToRead = notes.find((note) => note.title === title);
+  console.log(chalk.cyanBright.inverse(noteToRead.title));
+  console.log(noteToRead.body);
+};
+
 // loadNotes
 const loadNotes = () => {
   try {
@@ -68,5 +76,6 @@ const saveNotes = (notes) => {
 module.exports = {
   addNote,
   removeNote,
-  listNotes
+  listNotes,
+  readNote
 };
