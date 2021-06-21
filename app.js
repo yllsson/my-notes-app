@@ -4,6 +4,8 @@ const chalk = require('chalk');
 const notes = require('./notes');
 
 // I want 4 commands - add, remove, read, list
+
+// Add note
 yargs.command({
   command: 'add',
   describe: 'Add a new note',
@@ -21,7 +23,22 @@ yargs.command({
   },
   handler(argv) {
     notes.addNote(argv.title, argv.body);
-    console.log(chalk.magenta.inverse('Adding a note'));
+  }
+});
+
+// Remove note
+yargs.command({
+  command: 'remove',
+  describe: 'Remove a note',
+  build: {
+    title: {
+      describe: 'Note Title',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv) {
+    notes.removeNote(argv.title);
   }
 });
 

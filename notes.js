@@ -1,5 +1,6 @@
 /* The notes.js file will list all my functions for the command handlers */
 const fs = require('fs');
+const chalk = require('chalk');
 
 // addNote
 const addNote = (title, body) => {
@@ -11,7 +12,22 @@ const addNote = (title, body) => {
 
   notes.push(note);
 
+  console.log(chalk.magenta.inverse('Note added!'));
   saveNotes(notes);
+};
+
+// removeNote
+const removeNote = (title) => {
+  const notes = loadNotes();
+
+  const newNotes = notes.filter((note) => note.title !== title);
+
+  console.log(chalk.magenta.inverse(`Note "${title}" removed!`));
+  saveNotes(newNotes);
+
+  if (newNotes.length < 1) {
+    console.log(chalk.blue.inverse('Note list is empty'));
+  }
 };
 
 // loadNotes
@@ -32,5 +48,6 @@ const saveNotes = (notes) => {
 };
 
 module.exports = {
-  addNote
+  addNote,
+  removeNote
 };
